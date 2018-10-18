@@ -1,0 +1,36 @@
+\chapter{ Taules}
+\section{Taules mòbils}
+La taula corresponent és la taula \ref{tab:taula1} que es situa en la posició del text que correspon a la millor ubicació segons l'algoritme. 
+És una taula mòbil centrada, que ajusta la seva amplada a l'amplada de la pàgina. Consta de tres columnes, la primera amb els elements tabulats a l'esquerre, la segona amb els elements tabulats al centre i la tercera amb els elements tabulats a la dreta. No consta de línies laterals. A l'apartat \ref{taules fixes} podrem veure taules fixes clicant a la referència.
+
+\begin{table}[tbh]
+  \centering
+  \begin{tabular}{l|c|r}%primer elem tabulat a l'esquerra, segon tabulat al centre i tecer tabulat a la dreta i línies verticals entre mig
+    \hline % línia horitzontal per separació
+    \textbf{Capcelera c1}  & \textbf{Capcelera c3}  & \textbf{Capcelera de la c2} \\
+    \hline
+    element f1 c1  & element f1 c2  & element f1 c3 \\
+    element f2 c1  & element f2 c2  & element f2 c3 \\
+    \hline
+  \end{tabular}
+  \caption{Explicació de la taula}
+  \label{tab:taula1}
+\end{table}
+
+
+\section{Taules fixes}
+Taula amb quatre columnes tabulades a l'esquerre, les quals tenen una capcelera compartida entre dues columnes i la columna 4 no té capcelera.
+
+\label{taules fixes}
+\begin{center}
+  \resizebox{\textwidth}{!}{ %
+  \begin{tabular}{|l|l|l|l|}
+    \hline
+    \multicolumn{2}{|c|}{\textbf{Capcelera comú de la columna 1 i 2}} & \textbf{Capcelera de la columna3}& \\    
+    \hline
+    element f1 c1  & element f1 c2  & element f1 c3 & element f1 c4 \\
+    element f2 c1  & element f2 c2  & element f2 c3 & element f2 c4 \\
+    \hline
+  \end{tabular}
+  }
+\end{center}

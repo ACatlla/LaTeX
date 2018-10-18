@@ -1,0 +1,59 @@
+\documentclass[a4paper,11pt]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+\usepackage{listings}
+\lstset{
+  basicstyle=\sffamily,
+  frame = lines
+}
+
+\usepackage{lscape}
+
+\usepackage[load=abbr]{siunitx}
+\sisetup{decimalsymbol=.,dp=0}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{positioning}
+\usetikzlibrary{fit}
+\usetikzlibrary{petri}
+\usetikzlibrary{automata}
+\usetikzlibrary{snakes}
+\usetikzlibrary{shapes}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+\usepackage{circuitikz}
+\usepackage{tikz-timing}
+
+\title{ \LaTeX}
+\subtitle{ Plantilla de \LaTeX}
+
+\author{ ACatlla}
+\date{ \today}
+
+
+\begin{document}
+\maketitle{}
+\tableofcontents{}
+\listoffigures{}
+
+\include{codi}
+\include{enllacos}
+\include{taules}
+\include{figures}
+\include{matematiques}
+\include{circuits}
+\include{diagrames}
+\include{dibuixos}
+\include{timmings}
+\include{comandes}
+\include{entorns}
+
+\end{document}
+

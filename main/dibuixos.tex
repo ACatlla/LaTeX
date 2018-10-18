@@ -1,0 +1,80 @@
+\chapter{Dibuixos}
+
+\begin{center}
+\begin{tikzpicture}[line width=1.25pt]
+  \draw[<->,line width=1.5pt] (-6.5,0) -- (6.5,0) node[right] {$f$};
+  \draw[->,line width=1.5pt] (0,-0.2) -- (0,1.5) node[above] {};
+
+  \coordinate (o) at (0,0);
+  \coordinate (on) at (0,0);
+
+  \coordinate (b) at ($(o)+(0.125,0)$);
+  \coordinate (c) at ($(o)+(0.5,1)$);
+  \coordinate (a) at ($(o)+(1.5,0)$);
+  \draw (b) -- (c) -- (a);
+
+  \coordinate (bn) at ($(on)+(-0.125,0)$);
+  \coordinate (cn) at ($(on)+(-0.5,1)$);
+  \coordinate (an) at ($(on)+(-1.5,0)$);
+  \draw (bn) -- (cn) -- (an);
+
+  \draw ($(o)+(0.5,0.1)$) -- ($(o)+(0.5,0)$) node[below] {$f_c$};
+  \draw ($(on)+(-0.5,0.1)$) -- ($(on)+(-0.5,0)$) node[below] {$f_c$};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[line width=1.25pt]
+  \draw[<->,line width=1.5pt] (-6.5,0) -- (6.5,0) node[right] {$f$};
+  \draw[->,line width=1.5pt] (0,-0.2) -- (0,1.5) node[above] {};
+
+  \coordinate (od) at (4,0);
+  \coordinate (odn) at (-4,0);
+  \draw[->] ($(od)+(0,0)$) -- ($(od)+(0,1)$);
+  \draw[->] ($(odn)+(0,0)$) -- ($(odn)+(0,1)$);
+  \draw ($(od)+(0,0)$) node[below] {$f_s$};
+  \draw ($(odn)+(0,0)$) node[below] {$f_s$};
+\end{tikzpicture}
+\end{center}
+
+
+\begin{center}
+\begin{tikzpicture}[line width=1.25pt,scale=1]
+  \draw[<->,line width=1.5pt] (-6.5,0) -- (6.5,0) node[right] {$f$};
+  \draw[->,line width=1.5pt] (0,-0.2) -- (0,1.5) node[above] {};
+
+  \coordinate (o) at (4,0);
+  \coordinate (on) at (4,0);
+
+  \coordinate (b) at ($(o)+(0.125,0)$);
+  \coordinate (c) at ($(o)+(0.5,0.5)$);
+  \coordinate (a) at ($(o)+(1.5,0)$);
+  \draw (b) -- (c) -- (a);
+
+  \coordinate (bn) at ($(on)+(-0.125,0)$);
+  \coordinate (cn) at ($(on)+(-0.5,0.5)$);
+  \coordinate (an) at ($(on)+(-1.5,0)$);
+  \draw (bn) -- (cn) -- (an);
+
+  \draw ($(o)+(0,0.1)$) -- ($(o)+(0,0)$) node[below] {$f_s$};
+  \draw ($(o)+(0.5,0.1)$) -- ($(o)+(0.5,0)$) node[below] {$f_u$};
+
+  \coordinate (o) at (-4,0);
+  \coordinate (on) at (-4,0);
+
+  \coordinate (b) at ($(o)+(0.125,0)$);
+  \coordinate (c) at ($(o)+(0.5,0.5)$);
+  \coordinate (a) at ($(o)+(1.5,0)$);
+  \draw (b) -- (c) -- (a);
+
+  \coordinate (bn) at ($(on)+(-0.125,0)$);
+  \coordinate (cn) at ($(on)+(-0.5,0.5)$);
+  \coordinate (an) at ($(on)+(-1.5,0)$);
+  \draw (bn) -- (cn) -- (an);
+
+  \draw ($(on)+(0,0.1)$) -- ($(o)+(0,0)$) node[below] {$f_s$};
+  \draw ($(on)+(-0.5,0.1)$) -- ($(on)+(-0.5,0)$) node[below] {$f_u$};
+\end{tikzpicture}
+\end{center}
+

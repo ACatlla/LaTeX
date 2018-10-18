@@ -1,0 +1,96 @@
+\chapter{Timmings}
+
+\tikztimingmetachar{Y}{8{U}}
+\tikztimingmetachar{G}{6{L}}
+\tikztimingmetachar{P}{3{U}}
+\tikztimingmetachar{F}{3{D}}
+
+\begin{center}
+\begin{tikztimingtable}
+  \texttiming{T 3{YG} U}\\
+  \texttiming{T 7{PF} U}\\
+  \\
+  \extracode
+  \begin{pgfonlayer}{background}
+    \begin{scope}[semitransparent,semithick]
+      \vertlines{-2,-8,-16,-22,-30,-36,-44}
+    \end{scope}
+  \end{pgfonlayer}
+
+\end{tikztimingtable}
+\end{center}
+
+
+
+\begin{tikzpicture}[timing/picture,thick,scale=1,line width=0.5pt]
+
+  \draw (5,3) node [above] {\footnotesize{40ms}};
+  \draw (12,3) node [above] {\footnotesize{30ms}};
+  \draw (2.5,-3) node [below] {\footnotesize{15ms}};
+  \draw (5.5,-3) node [below] {\footnotesize{15ms}};
+ 
+  \draw[<->] (1.05,3) -- (8.95,3);
+  \draw[<->] (9.05,3) -- (14.95,3);
+  \draw[-] (1,3.5) -- (1,-3.5);
+  \draw[-] (9,3.5) -- (9,-3.5);
+  \draw[-] (15,3.5) -- (15,-3.5);
+  \draw[-] (23,3.5) -- (23,-3.5);
+  \draw[-] (29,3.5) -- (29,-3.5);
+  \draw[-] (37,3.5) -- (37,-3.5);
+  \draw[-] (43,3.5) -- (43,-3.5);
+
+  \draw[<->] (1,-3) -- (3.95,-3);
+  \draw[<->] (4.05,-3) -- (6.95,-3);
+  \draw[-] (4,0) -- (4,-3.5);
+  \draw[-] (7,0) -- (7,-3.5);
+
+  \timing at (0,1){T 3{YG} U};
+  \timing at (0,-1) {T 7{PF} U};
+\end{tikzpicture}
+
+\tikztimingmetachar{Y}{8{U}}
+\tikztimingmetachar{G}{8{L}}
+\tikztimingmetachar{P}{4{U}}
+\tikztimingmetachar{F}{4{D}}
+
+\begin{center}
+\begin{tikzpicture}[timing/picture,thick,scale=1,line width=0.5pt]
+
+  \draw (5,3) node [above] {\footnotesize{40ms}};
+  \draw (13,3) node [above] {\footnotesize{40ms}};
+  \draw (3,-3) node [below] {\footnotesize{20ms}};
+  \draw (7,-3) node [below] {\footnotesize{20ms}};
+ 
+  \draw[<->] (1.05,3) -- (8.95,3);
+  \draw[<->] (9.05,3) -- (16.95,3);
+  \draw[-] (1,3.5) -- (1,-3.5);
+  \draw[-] (9,3.5) -- (9,-3.5);
+  \draw[-] (17,3.5) -- (17,-3.5);
+  \draw[-] (25,3.5) -- (25,-3.5);
+  \draw[-] (33,3.5) -- (33,-3.5);
+  \draw[-] (41,3.5) -- (41,-3.5);
+  \draw[-] (49,3.5) -- (49,-3.5);
+
+  \draw[<->] (1,-3) -- (4.95,-3);
+  \draw[<->] (5.05,-3) -- (8.95,-3);
+  \draw[-] (5,0) -- (5,-3.5);
+
+  \timing at (0,1){T 3{YG} U};
+  \timing at (0,-1) {T 6{PF} U};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[timing/picture,thick,scale=1,line width=0.5pt]
+  \draw[-] (1,3.5) -- (1,-3.5);
+  \draw[-] (9,3.5) -- (9,-3.5);
+  \draw[-] (17,3.5) -- (17,-3.5);
+  \draw[-] (25,3.5) -- (25,-3.5);
+  \draw[-] (33,3.5) -- (33,-3.5);
+  \draw[-] (41,3.5) -- (41,-3.5);
+  \draw[-] (49,3.5) -- (49,-3.5);
+
+  \timing at (0,1){T 3{YG} U};
+  \timing at (0,-1) { 3{D} 5{PF} 4{U} 3{D}};
+\end{tikzpicture}
+\end{center}

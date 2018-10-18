@@ -1,0 +1,181 @@
+\chapter{Diagrames}
+\section{Diagrames de blocs}
+\begin{center}
+  \begin{tikzpicture}[auto,>=latex']
+    \tikzstyle{block} = [draw, shape=rectangle, minimum height=3em, minimum width=3em, node distance=2.75cm, line width=1pt]
+    \tikzstyle{io} = [draw=none, fill=none, shape=circle, minimum height=3em, minimum width=3em, node distance=3cm, line width=1pt]
+    \tikzstyle{clk} = [draw=none, fill=none, shape=circle, minimum height=3em, minimum width=3em, node distance=2cm, line width=1pt]
+    %Creating Blocks and Connection Nodes
+    \node [io, text width=1.5cm](input) {Senyal original};
+    \node [block, right of=input,text width=2.25cm] (m0) {Multiplicador 0 i 1};
+    \node [clk, above of=m0](clk0) {$clk_0$};
+    \node [block, right of=m0, text width=1.25cm] (bp) {Pas banda};
+    \node [block, right of=bp] (amp0) {Amplificador};
+    \node [block, right of=amp0] (tx) {Tx};
+    \node [block, below of=tx] (rx) {Rx};
+    \node [block, left of=rx] (amp1) {Amplificador};
+    \node [block, left of=amp1,text width=2.25cm] (m1) {Multiplicador -1 i 1};
+    \node [clk, below of=m1](clk1) {$clk_1$};
+    \node [block, left of=m1, text width=1.125cm] (lp) {Pas baix};
+    \node [io, left of=lp, text width=1.25cm] (output) {Senyal sortida};
+    %Conecting Blocks
+    \begin{scope}[line width=1pt]
+         \draw[->] (input) -- (m0);
+         \draw[->] (clk0) -- (m0);
+         \draw[->] (m0) -- (bp);
+         \draw[->] (bp) -- (amp0);
+         \draw[->] (amp0) -- (tx);
+         \draw[snake=expanding waves, segment angle=30] (tx) -- (rx);
+         \draw[->] (rx) -- (amp1);
+         \draw[->] (amp1) -- (m1);
+         \draw[->] (clk1) -- (m1);
+         \draw[->] (m1) -- (lp);
+         \draw[->] (lp) -- (output);
+    \end{scope}
+
+  \end{tikzpicture}
+\end{center}
+
+\section{Diagrames d'estats}
+\begin{tikzpicture}[shorten >=1pt,node distance=5cm,on grid,>=stealth',auto]
+\node[state,initial]  (e_0)                      {Repós};
+\node[state]          (e_1) [ right=of e_0][text width=2.25cm]{Estat alt $B=1->sc$ $B=0->s$};
+\node[state]          (e_2) [ right=of e_1][text width=2.25cm]{Estat baix $B=1->r$ $B=0->p$};
+\path[->,font=\scriptsize] 
+          (e_0) edge  [bend left] node        {flag up}  (e_1)
+          (e_1) edge  [bend left] node        {flag down}  (e_2)
+                edge  [bend left] node        {$B=1$} (e_0)
+          (e_2) edge  [bend left] node        {flag up}  (e_1)
+                edge  [bend left] node        {$A=1$} (e_0);
+\end{tikzpicture}
+
+\begin{landscape}
+\begin{figure}[!h]
+  \centering
+  \begin{tikzpicture}[shorten >=1pt,node distance=2.5cm,on grid,>=stealth',auto]
+
+    \tikzstyle{bigbox} = [draw=blue!50, thick, fill=blue!10, rounded corners, rectangle]
+    \tikzstyle{bigbox1} = [draw=green!50, thick, fill=green!10, rounded corners, rectangle]
+
+    \node[state]  (main) {main};
+
+    \node[state]  (automat) [below = of main]{automat};
+    \node[state]  (menu) [left = of automat] {menu};
+    \node[state]  (controller) [right = of automat]{controller};
+
+    \node[state]  (tools) [below = of automat] {tools};
+    \node[state]  (print) [below left = of menu] {print};
+
+    \node[state]  (time) [below = of tools]{time};
+    \node[state]  (lcd) [right = of time] {lcd};
+    \node[state]  (sensor) [right = of lcd] {sensor};
+
+    \node[state]  (rtc) [below = of time] {rtc};
+    \node[state]  (display) [right = of rtc] {display}; 
+    \node[state]  (accel) [right = of display] {accel};  
+
+    \node[state]  (buzzer) [left = of rtc] {buzzer};
+    \node[state]  (led) [left = of buzzer] {led};
+
+    \node[state]  (twi) [below = of display] {twi};
+
+    \node[state]  (botons) [left = of led] {botons};
+    \node[state]  (polsador) [left = of botons] {polsador};
+
+    \node[state]  (interrup) [below = of buzzer] {interrup};
+
+    \node[state]  (esdv) [right = of sensor] {esdv};
+    \node[state]  (queue) [right = of esdv] {queue};
+
+%    \node[state]  (timer) [left = of display] {timer};
+%    \node[state]  (serial) {serial};
+
+\begin{pgfonlayer}{background}
+  \node[bigbox] [fit = (display) (rtc) (accel)] (display_rtc_accel) {};
+  \node[bigbox] [fit = (lcd) (time) (sensor)] (lcd_time_sensor) {};
+  \node[bigbox] [fit = (botons) (polsador)] (botons_polsador) {};
+  \node[bigbox1] [fit = (buzzer) (led)] (buzzer_led) {};
+  \node[bigbox] [fit = (queue) (esdv)] (queue_esdv) {};
+  \node[bigbox1] [fit = (menu) (automat) (controller) (print) (tools) ] (timer) {};
+  \node[bigbox1] [fit = (lcd)] (timer1) {};
+  \node[bigbox] [fit = (menu) (automat) (controller)] (menu_automat_controller) {};
+\end{pgfonlayer}
+
+    \path[<->,font=\scriptsize] 
+    (automat) edge node {} (menu)
+              edge node {} (controller)
+    ;
+    \path[->,font=\scriptsize] 
+    (automat) edge node {} (main)
+    (tools) edge node {} (automat)
+            edge node {} (menu)
+    (print) edge node {} (menu)
+
+    (lcd_time_sensor) edge node {} (tools)
+                      edge node {} (print)
+
+    (lcd) edge node {} (automat)
+    (sensor) edge node {} (controller)
+
+    (display) edge node {} (lcd)
+    (rtc) edge node {} (time)
+    (accel) edge node {} (sensor)
+
+    (interrup) edge node {} (rtc)
+
+    (botons_polsador) edge node {} (automat)
+    (buzzer_led) edge node {} (tools)
+    ;
+    \path[dashed,->,font=\scriptsize] 
+    (queue_esdv) edge node {} (menu_automat_controller)
+    (twi) edge node {} (display_rtc_accel)
+    (interrup) edge node {} (botons_polsador)
+    ;
+   \end{tikzpicture}
+  \caption{Esquema dels mòduls software.}
+  \label{fig:esquema_bloc_software}
+\end{figure}
+\end{landscape}
+
+\begin{figure}[!h]
+  \begin{tikzpicture}[font=\ttfamily,node distance=0.75cm,
+    mymatrix/.style={matrix of nodes, nodes=typetag, row sep=1em},
+    mycontainer/.style={draw=gray, inner sep=1ex},
+    typetag/.style={draw=gray, inner sep=1ex, anchor=west},
+    title/.style={draw=none, color=gray, inner sep=0pt}
+    ]
+    \matrix[mymatrix] (mx1) {
+      |[title]|Alimentació \\
+      Bateria \\
+      Càrrega \\
+    };
+    \matrix[mymatrix, right=of mx1.north east, matrix anchor=north west] (mx2) {
+      |[title]|Interacció \\
+      Botonera \\
+      Display \\
+    };
+    \matrix[mymatrix, right=of mx2.north east, matrix anchor=north west] (mx3) {
+      |[title]|Avisadors \\
+      LED \\
+      Buzzer \\
+    };
+    \matrix[mymatrix, right=of mx3.north east, matrix anchor=north west] (mx4) {
+      Microcontrolador \\
+      Acceleròmetre \\
+      Memòria \\
+    };
+    \matrix[mymatrix, right=of mx4.north east, matrix anchor=north west] (mx5) {
+      RTC \\
+      RF\\
+    };
+    \node[mycontainer, fit=(mx1)] {};
+    \node[mycontainer, fit=(mx2)] {};
+    \node[mycontainer, fit=(mx3)] {};
+    
+  \end{tikzpicture}
+  \caption{Esquema general del muntatge.}
+  \label{fig:esquema_bloc}
+\end{figure}
+
+
+

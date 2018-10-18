@@ -1,0 +1,61 @@
+\documentclass[a4paper,11pt,landscape]{scrreprt}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+
+\usetikzlibrary{automata}
+
+\title{Màquina d'estats, pràctica 7}
+\subtitle{Programació concurrent i temps real}
+
+\begin{document}
+\maketitle
+\pagestyle{empty}
+\begin{tikzpicture}[shorten >=1pt,node distance=4cm,on grid,>=stealth',auto]
+\node[state,initial]  (init) {Init};
+\node[state]          (reset) [right=of init]{Reset};
+\node[state]          (stop) [right=of reset]{Stop};
+
+\node[state]          (baixant) [above right=of stop]{Baixant};
+\node[state]          (pujant) [above=of baixant]{Pujant};
+
+\node[state]          (obrint) [below right=of baixant]{Obrint};
+\node[state]          (obert) [below =of obrint]{Obert};
+\node[state]          (tencant) [left=of obert]{Tencant};
+
+\node[state]          (obrintp) [below right=of obert]{Obrintp};
+\node[state]          (obertp) [below right =of tencant]{Obertp};
+\node[state]          (tencantp) [below left=of tencant]{Tencantp};
+
+
+\path[->,font=\scriptsize] 
+          (init)     edge              node         {}(reset)
+          (reset)    edge              node         {}(stop)
+          (stop)     edge [bend left]  node         {$A<B$}(pujant)
+                     edge [bend left]  node [right] {$A>B$}(baixant)
+                     edge              node         {Bot open}(obrint)
+          (pujant)   edge [bend left]  node         {$A=B$}(obrint)
+                     edge [loop above] node         {$A!=B$}()
+          (baixant)  edge [bend left]  node [left]  {$A=B$}(obrint)
+                     edge [loop above] node         {$A!=B$}()
+          (obrint)   edge              node         {Bot close}(tencant)
+                     edge [bend left]  node         {Pol Bot}(obrintp)
+                     edge [bend left]  node [left]  {$temps$}(obert)
+          (obert)    edge [bend left]  node [above] {$temps$}(tencant)
+                     edge              node [above] {Bot close}(tencant)
+                     edge              node [left]  {Pol Bot}(obertp)
+          (tencant)  edge              node         {Bot open}(obrint)
+                     edge              node [left]  {Pol Bot}(tencantp)
+                     edge [bend left]  node [right] {$temps$}(stop)
+          (obrintp)  edge [bend left]  node         {Bot close}(tencantp)
+                     edge              node [above] {$temps$}(obertp)
+          (obertp)   edge [bend right] node [above] {$temps$}(tencantp)
+                     edge              node [above] {Bot open}(tencantp)
+          (tencantp) edge [bend right] node         {Bot open}(obrintp)
+                     edge [bend left]  node         {$temps$}(stop)
+;
+\end{tikzpicture}
+\end{document}

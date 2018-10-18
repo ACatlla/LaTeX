@@ -1,0 +1,40 @@
+\chapter{Circuits}
+\begin{center}
+  \begin{circuitikz}[scale=0.75]
+    \draw 
+    (0,0) node[op amp,yscale=-0.77] (opamp2) {}
+    (opamp2.+) node[above] {$v_+$}
+    (opamp2.-) node[above] {$v_-$}
+    (opamp2.+) -- (-2,0.5)
+    (opamp2.-) -- (-2,-0.5)
+    (opamp2.out) -- (2,0);
+    \draw
+    (-8,0) node[ocirc]{} 
+           node[left]{$V_{in}$}
+    (-8,0) to [C=470n] (-5,0)
+    (-5,0.5) -- (-5,-0.5) 
+    (-5,0.5) to [R=10k] (-2,0.5)
+    (-2,-0.5) to [R=10k] (-5,-0.5)
+    (-2,0.5) -- (-2,2)
+    to [R=10k] (2,2)
+    -- (2,0)
+    -- (3,0)
+    node[ocirc]{}
+    node[right]{$V_o$}
+    (-2,-4.5) to [cspst] (-2,-0.5) 
+    (-2,-4.5) node[ground]{};
+    \draw 
+    (-4,-2.5) node[op amp,yscale=-0.77] (opamp1) {}
+    (opamp1.+) node[above] {$v_+$}
+    (opamp1.-) node[above] {$v_-$}
+    (opamp1.+) -- (-6,-2)
+    -- (-8,-2)
+    node[ocirc]{}
+    node[left]{$clk$}
+    (opamp1.-) -- (-6,-3)
+    -- (-6,-4.5)
+    node[ground]{};
+    \draw[-latex]
+    (opamp1.out) -- (-2.25,-2.5);
+  \end{circuitikz}
+\end{center}
